@@ -14,17 +14,28 @@ const Header = () => {
       <SuperHeader>
         <Row>
           <ActionGroup>
-            <button>
+            <StyledButton>
               <Search size={24} />
-            </button>
-            <button>
+            </StyledButton>
+            <StyledButton>
               <Menu size={24} />
-            </button>
+            </StyledButton>
           </ActionGroup>
+          <DesktopHeader>
+            <Logo />
+          </DesktopHeader>
           <ActionGroup>
-            <button>
+            <MobileUserButton>
               <User size={24} />
-            </button>
+            </MobileUserButton>
+            <DesktopUserButton>
+              <Button>
+                Subscribe
+              </Button>
+              <Link>
+                Already a subscriber?
+              </Link>
+            </DesktopUserButton>
           </ActionGroup>
         </Row>
       </SuperHeader>
@@ -35,10 +46,47 @@ const Header = () => {
   );
 };
 
+const Link = styled.a`
+  color: var(--color-gray-900);
+  font-weight: var(--font-weight-normal);
+  font-family: var(--font-serif);
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 0.875rem;
+  margin-top: 0.57em;
+`
+
+const StyledButton = styled.button`
+  @media ${QUERIES.laptopAndUp} {
+    color: var(--color-gray-900);
+  }
+`
+
+const DesktopUserButton = styled(StyledButton)`
+  display: none;
+  
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`
+
+const MobileUserButton = styled(StyledButton)`
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
+`
+
 const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+
+  @media ${QUERIES.laptopAndUp} {
+    background: var(--color-gray-100);
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -65,6 +113,23 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
+`;
+
+const DesktopHeader = styled(MaxWidthWrapper)`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 48px;
+  color: var(--color-offblack);
+
+  @media ${QUERIES.laptopAndUp} {
+    display: flex;
+  }
 `;
 
 export default Header;
