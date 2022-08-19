@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import {
-  MAIN_STORY,
-  OPINION_STORIES,
-  SECONDARY_STORIES,
+    MAIN_STORY,
+    OPINION_STORIES,
+    SECONDARY_STORIES,
 } from '../../data';
 
 import SectionTitle from '../SectionTitle';
@@ -14,34 +14,38 @@ import OpinionStory from '../OpinionStory';
 import Advertisement from '../Advertisement';
 
 const MainStoryGrid = () => {
-  return (
-    <Wrapper>
-      <MainStorySection>
-        <MainStory {...MAIN_STORY} />
-      </MainStorySection>
+    return (
+        <Wrapper>
+            <MainStorySection>
+                <MainStory {...MAIN_STORY} />
+            </MainStorySection>
 
-      <SecondaryStorySection>
-        <StoryList>
-          {SECONDARY_STORIES.map((story, index) => (
-            <SecondaryStory key={story.id} {...story} />
-          ))}
-        </StoryList>
-      </SecondaryStorySection>
+            <SecondaryStorySection>
+                <StoryList>
+                    {SECONDARY_STORIES.map((story, index) => (
+                        <VerticalStoryWrapper key={story.id}>
+                            <SecondaryStory  {...story} />
+                        </VerticalStoryWrapper>
+                    ))}
+                </StoryList>
+            </SecondaryStorySection>
 
-      <OpinionSection>
-        <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
-          {OPINION_STORIES.map((story, index) => (
-            <OpinionStory key={story.id} {...story} />
-          ))}
-        </StoryList>
-      </OpinionSection>
+            <OpinionSection>
+                <SectionTitle>Opinion</SectionTitle>
+                <StoryList>
+                    {OPINION_STORIES.map((story, index) => (
+                        <VerticalStoryWrapper key={story.id}>
+                            <OpinionStory {...story} />
+                        </VerticalStoryWrapper>
+                    ))}
+                </StoryList>
+            </OpinionSection>
 
-      <AdvertisementSection>
-        <Advertisement />
-      </AdvertisementSection>
-    </Wrapper>
-  );
+            <AdvertisementSection>
+                <Advertisement/>
+            </AdvertisementSection>
+        </Wrapper>
+    );
 };
 
 const Wrapper = styled.div`
@@ -58,6 +62,15 @@ const Wrapper = styled.div`
 const MainStorySection = styled.section`
   grid-area: main-story;
 `;
+
+const VerticalStoryWrapper = styled.div`
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-gray-300);
+  }
+`
 
 const SecondaryStorySection = styled.section`
   grid-area: secondary-stories;
