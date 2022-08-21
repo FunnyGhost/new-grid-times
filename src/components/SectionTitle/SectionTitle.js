@@ -25,6 +25,7 @@ const Title = styled.h2`
   color: var(--color-gray-900);
   font-weight: var(--font-weight-bold);
   font-size: 1.5rem;
+  line-height: 1;
   margin-bottom: 1rem;
 `;
 
